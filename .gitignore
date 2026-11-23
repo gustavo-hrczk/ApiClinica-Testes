@@ -13,7 +13,8 @@
 *.userosscache
 *.sln.docstates
 
-## Banco SQLite local
+## Banco SQLite local (criado pelas migrations ao subir a API)
+*.db
 *.db-shm
 *.db-wal
 
@@ -28,3 +29,7 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 .DS_Store
+
+## Testes: resultados brutos e relatorio de cobertura (gerados localmente)
+TestResults/
+coverage-report/

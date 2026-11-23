@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <!-- Mede apenas o assembly da API (nao o projeto de testes). -->
+          <Include>[ApiClinica]*</Include>
+          <!--
+            Fora da medicao, por nao serem codigo escrito pela equipe ou nao terem logica testavel
+            em teste unitario:
+              - Migrations/: codigo gerado pelo "dotnet ef migrations add".
+              - Program.cs: composicao da aplicacao (registro de DI, pipeline HTTP, Migrate()).
+                E exercitado de ponta a ponta pelos testes de carga do k6.
+              - GeneratedCodeAttribute: codigo emitido por geradores do compilador (por exemplo,
+                o gerador do pacote Microsoft.AspNetCore.OpenApi), que nao existe no repositorio.
+            Models e DTOs continuam dentro da medicao.
+          -->
+          <ExcludeByFile>**/Migrations/*.cs,**/Program.cs</ExcludeByFile>
+          <ExcludeByAttribute>GeneratedCodeAttribute</ExcludeByAttribute>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

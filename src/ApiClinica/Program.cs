@@ -11,15 +11,25 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var pasta = new DirectoryInfo(AppContext.BaseDirectory);
-while (pasta is not null && !pasta.EnumerateFiles("*.csproj").Any())
-    pasta = pasta.Parent;
+// Banco de dados: por padrao usa o arquivo clinica.db na pasta do projeto.
+// Para apontar para outro banco (ex.: um banco descartavel nos testes de carga),
+// defina ConnectionStrings:Default no appsettings ou a variavel de ambiente
+// ConnectionStrings__Default="Data Source=carga.db".
+var connectionString = builder.Configuration.GetConnectionString("Default");
 
-var dbPath = Path.Combine(pasta?.FullName ?? AppContext.BaseDirectory, "clinica.db");
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    var pasta = new DirectoryInfo(AppContext.BaseDirectory);
+    while (pasta is not null && !pasta.EnumerateFiles("*.csproj").Any())
+        pasta = pasta.Parent;
+
+    var dbPath = Path.Combine(pasta?.FullName ?? AppContext.BaseDirectory, "clinica.db");
+    connectionString = $"Data Source={dbPath}";
+}
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite($"Data Source={dbPath}"));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
 
 builder.Services.AddScoped<IPacienteMapper, PacienteMapper>();
 builder.Services.AddScoped<IMedicoMapper, MedicoMapper>();

@@ -1,0 +1,64 @@
+
+
+  █ THRESHOLDS 
+
+    checks
+    ✓ 'rate==1' rate=100.00%
+
+    http_req_duration
+    ✓ 'p(95)<300' p(95)=46.7ms
+
+    http_req_failed
+    ✓ 'rate==0' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 193     5.822424/s
+    checks_succeeded...: 100.00% 193 out of 193
+    checks_failed......: 0.00%   0 out of 193
+
+    ✓ setup: login 200
+    ✓ listar pacientes: 200
+    ✓ listar pacientes: devolve array
+    ✓ listar medicos: 200
+    ✓ listar consultas: 200
+    ✓ criar paciente: 201
+    ✓ criar paciente: tem id
+    ✓ criar paciente: nao expoe cpf
+    ✓ buscar paciente: 200
+    ✓ buscar paciente: id confere
+    ✓ atualizar paciente: 200
+    ✓ atualizar paciente: telefone mudou
+    ✓ criar consulta: 201
+    ✓ criar consulta: tem id
+    ✓ buscar consulta: 200
+    ✓ buscar consulta: paciente confere
+    ✓ reagendar consulta: 204
+    ✓ excluir consulta: 204
+    ✓ excluir paciente: 204
+    ✓ sem token: 401
+    ✓ paciente inexistente: 404
+    ✓ cpf invalido: 400
+    ✓ email invalido: 400
+    ✓ cpf duplicado: 409
+    ✓ consulta no passado: 400
+
+    HTTP
+    http_req_duration..............: avg=15.31ms min=0s    med=7.18ms max=308.56ms p(90)=28.35ms p(95)=46.7ms
+      { expected_response:true }...: avg=15.31ms min=0s    med=7.18ms max=308.56ms p(90)=28.35ms p(95)=46.7ms
+    http_req_failed................: 0.00% 0 out of 180
+    http_reqs......................: 180   5.43024/s
+
+    EXECUTION
+    iteration_duration.............: avg=3.95s   min=2.98s med=3.99s  max=4.99s    p(90)=4.5s    p(95)=4.75s 
+    iterations.....................: 8     0.241344/s
+    vus............................: 0     min=0        max=1
+    vus_max........................: 1     min=1        max=1
+
+    NETWORK
+    data_received..................: 63 kB 1.9 kB/s
+    data_sent......................: 96 kB 2.9 kB/s
+
+
+

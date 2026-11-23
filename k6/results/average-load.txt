@@ -1,0 +1,66 @@
+
+
+  █ THRESHOLDS 
+
+    checks
+    ✓ 'rate>0.99' rate=100.00%
+
+    http_req_duration
+    ✓ 'p(95)<500' p(95)=170.22ms
+
+      {tipo:escrita}
+      ✓ 'p(95)<600' p(95)=237.54ms
+
+      {tipo:leitura}
+      ✓ 'p(95)<400' p(95)=26.79ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 26029   85.357941/s
+    checks_succeeded...: 100.00% 26029 out of 26029
+    checks_failed......: 0.00%   0 out of 26029
+
+    ✓ setup: login 200
+    ✓ listar pacientes: 200
+    ✓ listar pacientes: devolve array
+    ✓ listar medicos: 200
+    ✓ listar consultas: 200
+    ✓ criar paciente: 201
+    ✓ criar paciente: tem id
+    ✓ criar paciente: nao expoe cpf
+    ✓ buscar paciente: 200
+    ✓ buscar paciente: id confere
+    ✓ atualizar paciente: 200
+    ✓ atualizar paciente: telefone mudou
+    ✓ criar consulta: 201
+    ✓ criar consulta: tem id
+    ✓ buscar consulta: 200
+    ✓ buscar consulta: paciente confere
+    ✓ reagendar consulta: 204
+    ✓ excluir consulta: 204
+    ✓ excluir paciente: 204
+
+    HTTP
+    http_req_duration..............: avg=31.14ms min=0s    med=5.61ms max=2.75s    p(90)=63.26ms p(95)=170.22ms
+      { expected_response:true }...: avg=31.14ms min=0s    med=5.61ms max=2.75s    p(90)=63.26ms p(95)=170.22ms
+      { tipo:escrita }.............: avg=51.33ms min=628µs med=7.37ms max=2.75s    p(90)=167.1ms p(95)=237.54ms
+      { tipo:leitura }.............: avg=8.23ms  min=0s    med=1.62ms max=988.17ms p(90)=10.49ms p(95)=26.79ms 
+    http_req_failed................: 0.00%  0 out of 16348
+    http_reqs......................: 16348  53.61065/s
+
+    EXECUTION
+    iteration_duration.............: avg=3.36s   min=1.74s med=3.29s  max=6.95s    p(90)=4.17s   p(95)=4.59s   
+    iterations.....................: 1446   4.741926/s
+    vus............................: 0      min=0          max=20
+    vus_max........................: 20     min=20         max=20
+
+    NETWORK
+    data_received..................: 50 MB  164 kB/s
+    data_sent......................: 8.7 MB 29 kB/s
+
+
+
